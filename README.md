@@ -13,7 +13,7 @@ To play:
 
 Request | Optional Params | Example Response | Description
 |-------------------------|------------------------------------|-------------------------------------|-----------------------|
-/newgame/`{{player}}`/ | max : int = 10 | `{"Player": "player", "Range": "1 - 100r", "Message": "New game created"}` | Start a new game
+/newgame/`{{player}}`/ | max : int = 10 | `{"Player": "player", "Range": "1 - 100", "Message": "New game created"}` | Start a new game
 /`{{player}}`/`{{guess}}`/ | none | `{"Player": "player", "Correct": false, "Guesses": 2, "Message": "Too low"}` | Make a guess
 /scores | sort_by : str = guesses, order : str = desc | *see below* | Fetch list of recorded scores
 /open-games | sort_by : str = player, order : str = asc | *see below* | Fetch list of unfinished games
