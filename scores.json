@@ -90,6 +90,20 @@
                 41
             ],
             "number": 41
+        },
+        {
+            "player": "johnsmith",
+            "correct": true,
+            "total_guesses": 6,
+            "guesses": [
+                50,
+                75,
+                63,
+                69,
+                72,
+                71
+            ],
+            "number": 71
         }
     ]
 }

@@ -14,7 +14,7 @@ def root():
 def newgame(player: str, max: int = 100):
     g = Game(player=player, max=max)
     g.save_game()
-    return {'Player': player, 'Range': f'1 - {max}', 'Message': 'New game created'}
+    return {"message": f"New game created for {g.player}. Guess the number between 1 - {max}"}
 
 
 @app.get('/{player}/{guess}/')
@@ -23,7 +23,7 @@ def guess(player: str, guess: int):
     g = Game(save)
     message = g.check_guess(guess)
     g.save_game()
-    return {"Player": player, "Correct": g.correct, "Guesses": len(g.guesses), "Message": message}
+    return {"player": player, "correct": g.correct, "guesses": len(g.guesses), "message": message}
 
 
 @app.get('/scores')

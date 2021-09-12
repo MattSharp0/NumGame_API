@@ -4,15 +4,15 @@ from random import randint
 
 class Game():
 
-    def __init__(self, save: dict = {}, playername: str = '', max: int = 100) -> None:
+    def __init__(self, save: dict = {}, player: str = '', max: int = 100) -> None:
         if save:
             print(save)
-            self.playername = save.get("player")
+            self.player = save.get("player")
             self.correct = save.get("correct")
             self.guesses = save.get("guesses")
             self.number = save.get("number")
         else:
-            self.playername = playername
+            self.player = player
             self.correct = False
             self.guesses = []
             self.number = randint(1, max)
@@ -28,13 +28,13 @@ class Game():
             return 'Too high'
 
     def save_game(self):
-        new_data = {'player': self.playername, 'correct': self.correct,
+        new_data = {'player': self.player, 'correct': self.correct,
                     'total_guesses': len(self.guesses), 'guesses': self.guesses, 'number': self.number}
         with open('scores.json', 'r+') as jf:
             file_data = json.load(jf)
             saves = file_data["in_progress"]
             for i in range(1, len(saves)):
-                if saves[i]["player"] == self.playername:
+                if saves[i]["player"] == self.player:
                     del saves[i]
             if self.correct:
                 file_data["completed"].append(new_data)
@@ -45,12 +45,12 @@ class Game():
             json.dump(file_data, jf, indent=4)
 
 
-def load_game(playername):
+def load_game(player):
     with open('scores.json', 'r+') as jf:
         file_data = json.load(jf)
         saves = file_data["in_progress"]
         for i in range(1, len(saves)):
-            if saves[i]["player"] == playername:
+            if saves[i]["player"] == player:
                 return saves[i]
 
 
