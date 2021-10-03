@@ -1,6 +1,8 @@
 import json
 from random import randint
 
+SCORE_FILE = 'scores.json'
+
 
 class Game():
 
@@ -30,7 +32,7 @@ class Game():
     def save_game(self):
         new_data = {'player': self.player, 'correct': self.correct,
                     'total_guesses': len(self.guesses), 'guesses': self.guesses, 'number': self.number}
-        with open('scores.json', 'r+') as jf:
+        with open(SCORE_FILE, 'r+') as jf:
             file_data = json.load(jf)
             saves = file_data["in_progress"]
             for i in range(1, len(saves)):
@@ -46,7 +48,7 @@ class Game():
 
 
 def load_game(player):
-    with open('scores.json', 'r+') as jf:
+    with open(SCORE_FILE, 'r+') as jf:
         file_data = json.load(jf)
         saves = file_data["in_progress"]
         for i in range(1, len(saves)):
@@ -55,7 +57,7 @@ def load_game(player):
 
 
 def get_game_data(completed: bool = True):
-    with open('scores.json') as jf:
+    with open(SCORE_FILE) as jf:
         scores = json.load(jf)
         if completed:
             return scores["completed"]
